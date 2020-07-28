@@ -10,25 +10,30 @@ class ChatScreenComponent extends Component{
     constructor(props){
         super(props);
         this.state={
-            username:""
+            username:"",
+            room:"",
         }
 
     }
 
     componentWillUnmount(){
         socket.emit('disconnect');
+        socket.off();
     }
 
     componentDidMount(){
-        const {name}=queryString.parse(this.props.location.search);
+        const {name,room}=queryString.parse(this.props.location.search);
+        console.log("Name:"+name);
+        console.log("Room:"+room);
 
         socket=io(END_POINT);
 
         this.setState({
-            username:name
+            username:name,
+            room:room
         })
 
-        socket.emit('join',{name:name});
+        socket.emit('join',{name,room});
     }
 
 

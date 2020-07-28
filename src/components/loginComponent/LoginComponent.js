@@ -9,8 +9,10 @@ class LoginComponent extends Component{
         super(props);
         this.state={
             username:"",
+            room:""
         }
         this.submitUsername=this.submitUsername.bind(this);
+        this.submitRoom=this.submitRoom.bind(this);
     }
 
     submitUsername(event){
@@ -20,12 +22,19 @@ class LoginComponent extends Component{
         })
     }
 
+    submitRoom(event){
+        console.log(event.target.value);
+        this.setState({
+            room:event.target.value
+        })
+    }
+
 
     render(){
         return <div>
                 <input type="text" placeholder="Enter A Username" value={this.state.username} onChange={this.submitUsername}></input>
-                
-                <Link onClick={event=>(!this.state.username)?event.preventDefault():null} to={`/chat?name=${this.state.username}`}>
+                <input type="text" placeholder="Enter A Room To Join" value={this.state.room} onChange={this.submitRoom}></input>
+                <Link onClick={event=>(!this.state.username)?event.preventDefault():null} to={`/chat?name=${this.state.username}&room=${this.state.room}`}>
                     <button type="submit">Sign In</button>
                 </Link>
                 
