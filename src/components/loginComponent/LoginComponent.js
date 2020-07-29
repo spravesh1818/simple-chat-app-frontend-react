@@ -1,5 +1,4 @@
 import React,{ Component } from 'react';
-import SocketUtil from '../../helper/SocketUtil';
 import {Link} from 'react-router-dom';
 
 class LoginComponent extends Component{
