@@ -66,10 +66,11 @@ class ChatScreenComponent extends Component {
             })
         });
 
-        socket.on('roomUsers',({users})=>{
-            this.setState({users});
+        socket.on('usersInRoom',({users})=>{
+            this.setState({
+                users:users
+            })
         })
-
         
     }
 
@@ -77,16 +78,24 @@ class ChatScreenComponent extends Component {
 
 
     render() {
-        console.log(this.state.message,this.state.messages,this.state.users);
-        console.log(this.state.room,this.state.username);
-        const items = this.state.messages.map((item) => 
-            <li>{item.user}:{item.text}</li>);
+    
+        const messages = this.state.messages.map((message) => 
+            <li>{message.user}:{message.text}</li>);
 
+        const onlineUsers = this.state.users.map((user) => 
+            <li>{user.name}</li>);
+       
         return (<>
             Welcome {this.state.username}
 
             <ul>
-                {items}
+                {messages}
+            </ul>
+
+
+            <p>OnlineUsers</p>
+            <ul>
+                {onlineUsers}
             </ul>
 
             <form onSubmit={this.sendMessage}>
