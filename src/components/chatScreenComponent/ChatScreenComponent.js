@@ -23,8 +23,9 @@ class ChatScreenComponent extends Component {
         this.setMessage = this.setMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.exitRoom = this.exitRoom.bind(this);
+        this.scrollref=React.createRef();
+        this.scrollRefEvent=this.scrollRefEvent.bind(this);
     }
-
 
     exitRoom() {
         console.log("Exit button clicked");
@@ -35,6 +36,7 @@ class ChatScreenComponent extends Component {
 
     sendMessage(event) {
         event.preventDefault();
+        console.log(this.scrollref);
         if(this.state.message!==''){
             socket.emit('sendMessage', { message: this.state.message }, () => {
                 this.setState({
@@ -42,6 +44,10 @@ class ChatScreenComponent extends Component {
                 })
             });
         }
+    }
+
+    scrollRefEvent(){
+        this.scrollref.current.scrollIntoView({behaviour:"smooth"});
     }
 
     setMessage(event) {
@@ -88,9 +94,17 @@ class ChatScreenComponent extends Component {
             this.setState({
                 users: users
             })
-        })
+        });
+
+        this.scrollRefEvent();
 
     }
+
+    componentDidUpdate(){
+        this.scrollRefEvent();
+    }
+
+
 
 
 
@@ -109,9 +123,8 @@ class ChatScreenComponent extends Component {
                     <OnlineUsersComponent onlineusers={this.state.users}></OnlineUsersComponent>
                     <div className="chat-screen-messagebox">
 
-                        <ChatListComponent messages={this.state.messages} username={this.state.username}></ChatListComponent>
+                        <ChatListComponent reference={this.scrollref} messages={this.state.messages} username={this.state.username}></ChatListComponent>
                         <ChatComposeComponent message={this.state.message} setMessage={this.setMessage} sendMessage={this.sendMessage}></ChatComposeComponent>
-
                     </div>
                 </div>
             </div>

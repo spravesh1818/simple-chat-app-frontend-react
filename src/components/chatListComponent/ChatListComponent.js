@@ -1,15 +1,14 @@
 import React from 'react';
 import ChatBubble from '../chatBubbleComponent/ChatBubbleComponent';
 import './ChatListComponent.css';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
-const ChatListComponent = ({messages,username}) => (
+
+const ChatListComponent = ({messages,username,reference}) => (
     <div className="chat-list">
-        <ScrollToBottom>
         {messages.map((message,i)=>{
-            return <ChatBubble message={message} username={username} index={i}></ChatBubble>
+            return <ChatBubble message={message} username={username} key={i}></ChatBubble>
         })}
-        </ScrollToBottom>
+        <div ref={reference}></div>
     </div>
 )
 

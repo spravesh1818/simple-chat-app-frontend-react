@@ -8,7 +8,7 @@ const OnlineUsersComponent = ({onlineusers}) => (
     </div>
     <div className="online-user-list">
         {onlineusers.map((user,i)=>{
-            return <div index={i}><span className="onlineUserSymbol">*</span>{user.name}</div>
+            return <div key={i}><span className="onlineUserSymbol">*</span>{user.name}</div>
         })}
     </div>
     </div>
