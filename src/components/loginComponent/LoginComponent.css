@@ -16,6 +16,12 @@
     justify-items: center;
 }
 
+.errorLabel{
+    color: red;
+    font-weight: bold;
+    font-size: 12px;
+}
+
 .login-btn{
     width: 100px;
 	background: #27AE60;
