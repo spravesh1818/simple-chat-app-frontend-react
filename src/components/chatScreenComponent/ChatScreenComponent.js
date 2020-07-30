@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import io from 'socket.io-client';
 import queryString from 'query-string';
 import "./ChatScreenComponent.css";
-
 let socket;
 const END_POINT = "localhost:5000";
 
@@ -19,12 +18,17 @@ class ChatScreenComponent extends Component {
         }
         this.setMessage = this.setMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+        this.exitRoom=this.exitRoom.bind(this);
+    }
 
+
+    exitRoom(){
+        socket.emit('disconnect');
+        this.props.history.push("/login");
     }
 
     sendMessage(event) {
         event.preventDefault();
-        console.log(this.state.message);
         socket.emit('sendMessage', { message: this.state.message }, () => {
             this.setState({
                 message: ''
@@ -60,6 +64,12 @@ class ChatScreenComponent extends Component {
             }
         });
 
+        socket.on('loadAllMessages',(messages)=>{
+            this.setState({
+                messages
+            })
+        })
+
         socket.on('message', (message) => {
             this.setState({
                 messages: [...this.state.messages, message]
@@ -78,8 +88,6 @@ class ChatScreenComponent extends Component {
 
 
     render() {
-
-
         const messages = this.state.messages.map((message) => {
             if (message.user === this.state.username.toLowerCase()) {
                 return <div className="chat-screen-message-sent-message">
@@ -98,15 +106,10 @@ class ChatScreenComponent extends Component {
                 </div>
             }
         })
-        // const messages = this.state.messages.map((message) =>
-        //     <div className="chat-screen-message-received-message">
-        //         <div className="chat-screen-message-text">{message.text}</div> 
-        //         <div className="chat-screen-message-user">{message.user}</div>
-        //     </div>);
-
+    
         const onlineUsers = this.state.users.map((user) =>
-            <div class="contact">
-                <div class="text">
+            <div className="contact">
+                <div className="text">
                     <h4>{user.name}</h4>
                 </div>
             </div>);
@@ -120,7 +123,7 @@ class ChatScreenComponent extends Component {
                         </label>
                     </div>
                     <div className="chat-room-exit">
-                        <button className="chat-room-exit-btn">Exit</button>
+                        <button className="chat-room-exit-btn" onClick={this.exitRoom}>Exit Room</button>
                     </div>
                 </div>
 
@@ -130,9 +133,10 @@ class ChatScreenComponent extends Component {
 
                 <div className="chat-screen-body">
                     <div className="chat-screen-messagebox">
-                        <div class="chat-screen-message-list">
+                        <div className="chat-screen-message-list">
                             {messages}
                         </div>
+                        
                         <div className="chat-screen-message-compose">
                             <form onSubmit={this.sendMessage}>
                                 <input className="chat-screen-input" type="text" value={this.state.message} onChange={this.setMessage}></input>
@@ -143,19 +147,16 @@ class ChatScreenComponent extends Component {
                     </div>
 
 
-                    <div class="chat-screen-online-user">
-                        <div class="header">
+                    <div className="chat-screen-online-user">
+                        <div className="header">
                             <h2> Online</h2>
                         </div>
-                        <div class="chat-screen-online-user-list">
+                        <div className="chat-screen-online-user-list">
                             {onlineUsers}
                         </div>
                     </div>
 
                 </div>
-            </div>
-            <div className="chat-screen-header">
-
             </div>
         </>)
     }
