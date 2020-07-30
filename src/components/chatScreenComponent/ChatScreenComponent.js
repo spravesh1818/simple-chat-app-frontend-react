@@ -29,10 +29,8 @@ class ChatScreenComponent extends Component {
     exitRoom() {
         console.log("Exit button clicked");
         console.log(socket);
-        socket.emit('disconnect', () => {
-            console.log("Not getting callback");
-            this.props.history.push("/login");
-        });
+        socket.close();
+        this.props.history.push("/login");
     }
 
     sendMessage(event) {
@@ -102,18 +100,17 @@ class ChatScreenComponent extends Component {
                 <HeaderComponent roomName={this.state.room} exitRoom={this.exitRoom}></HeaderComponent>
 
                 <div className="chat-screen-body">
+                    
+
+
+                   
+                    <OnlineUsersComponent onlineusers={this.state.users}></OnlineUsersComponent>
                     <div className="chat-screen-messagebox">
 
                         <ChatListComponent messages={this.state.messages} username={this.state.username}></ChatListComponent>
                         <ChatComposeComponent message={this.state.message} setMessage={this.setMessage} sendMessage={this.sendMessage}></ChatComposeComponent>
 
                     </div>
-
-
-                    <div className="chat-screen-online-user">
-                        <OnlineUsersComponent onlineusers={this.state.users}></OnlineUsersComponent>
-                    </div>
-
                 </div>
             </div>
         </>)

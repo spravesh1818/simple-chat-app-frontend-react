@@ -1,0 +1,29 @@
+.online-user-list{
+    padding: 10pt;
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.online-user{
+    display: flex;
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    border-radius:5pt 5pt 0 0;
+}
+
+.onlineUserSymbol{
+    padding: 5pt;
+    color: green;
+}
+
+.online-header{
+    display: flex;
+    justify-content: center;
+    padding: 10pt;
+    background: cornflowerblue;
+    border-radius: 5pt 0 0 0;
+}

@@ -1,0 +1,25 @@
+.headercomp-header{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    background-color: aqua;
+  }
+
+  .header-name{
+    padding: 5pt;
+    margin: 5pt 5pt 5pt 10pt;
+    border: 2px solid black;
+  }
+  
+
+  .header-exit-btn{
+    width: 100px;
+	background: #DC143C	;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}

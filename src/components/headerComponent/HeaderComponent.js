@@ -1,16 +1,15 @@
 import React from "react";
-
-
+import "./HeaderComponent.css";
 
 const HeaderComponent = ({ roomName ,exitRoom}) => (
-    <div className="chat-screen-header">
-        <div className="chat-room-name">
+    <div className="headercomp-header">
+        <div className="header-name">
             <label className="chat-room-name-label">
                 Room:{roomName}
             </label>
         </div>
         <div className="chat-room-exit">
-            <button className="chat-room-exit-btn" onClick={exitRoom}>Exit Room</button>
+            <button className="header-exit-btn" onClick={exitRoom}>Exit Room</button>
         </div>
     </div>
 )

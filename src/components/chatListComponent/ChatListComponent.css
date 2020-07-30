@@ -1,0 +1,8 @@
+.chat-list{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: scroll;
+    background: #d7ccc8;
+}

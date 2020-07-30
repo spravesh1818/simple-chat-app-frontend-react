@@ -1,20 +1,21 @@
 import React from 'react';
+import "./ChatBubbleComponent.css";
 
 const ChatBubble=({message,username,index})=>{
     if (message.user === username.toLowerCase()) {
-        return <div index={index} className="chat-screen-message-sent-message">
-            <div className="chat-screen-message-text">{message.text}</div>
-            <div className="chat-screen-message-user">{message.user}</div>
+        return <div index={index} className="chat-bubble-sent-message">
+            <div className="chat-bubble-text">{message.text}</div>
+            <div className="chat-bubble-user">{message.user}</div>
         </div>;
     } else if (message.user === "System") {
-        return <div index={index} className="chat-screen-message-system-message">
-            <div className="chat-screen-message-text">{message.text}</div>
-            <div className="chat-screen-message-user">{message.user}</div>
+        return <div index={index} className="chat-bubble-system-message">
+            <div className="chat-bubble-text">{message.text}</div>
+            <div className="chat-bubble-user">{message.user}</div>
         </div>
     } else {
-        return <div index={index} className="chat-screen-message-received-message">
-            <div className="chat-screen-message-text">{message.text}</div>
-            <div className="chat-screen-message-user">{message.user}</div>
+        return <div index={index} className="chat-bubble-received-message">
+            <div className="chat-bubble-text">{message.text}</div>
+            <div className="chat-bubble-user">{message.user}</div>
         </div>
     }
 }

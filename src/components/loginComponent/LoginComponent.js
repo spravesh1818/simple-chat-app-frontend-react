@@ -10,10 +10,31 @@ class LoginComponent extends Component {
         super(props);
         this.state = {
             username: "",
-            room: ""
+            room: "",
+            usererror:"",
+            roomerror:""
         }
         this.submitUsername = this.submitUsername.bind(this);
         this.submitRoom = this.submitRoom.bind(this);
+        this.handleValidation=this.handleValidation.bind(this);
+    }
+
+    handleValidation(event){
+        if(!this.state.room){
+            this.setState({
+                roomerror:"Room field cannot be left empty"
+            })
+            event.preventDefault();
+        }
+
+        if(!this.state.username){
+            this.setState({
+                usererror:"User field cannot be left empty"
+            })
+            event.preventDefault();
+        }
+
+
     }
 
     submitUsername(event) {
@@ -37,12 +58,14 @@ class LoginComponent extends Component {
                 <div className="login-label-div"><label >Login</label></div>
                 <div>
                     <input type="text" className="login-input" placeholder="Enter A Username" value={this.state.username} onChange={this.submitUsername}></input>
+    <label>{this.state.usererror}</label>
                 </div>
                 <div>
                     <input type="text" className="login-input" placeholder="Enter A Room To Join" value={this.state.room} onChange={this.submitRoom}></input>
+                    <label>{this.state.roomerror}</label>
                 </div>
                 <div className="login-row">
-                    <Link onClick={event => (!this.state.username) ? event.preventDefault() : null} to={`/chat?name=${this.state.username}&room=${this.state.room}`}>
+                    <Link onClick={this.handleValidation} to={`/chat?name=${this.state.username}&room=${this.state.room}`}>
                         <button className="login-btn" type="submit">Sign In</button>
                     </Link>
                 </div>
