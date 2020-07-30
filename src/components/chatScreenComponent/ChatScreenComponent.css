@@ -1,0 +1,108 @@
+.chat-room-exit-btn{
+    width: 100px;
+	background: #DC143C	;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+
+.chat-screen-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-screen-header{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background-color: aqua;
+}
+
+
+.chat-screen-body{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.chat-screen-messagebox{
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+}
+
+.chat-room-name{
+  padding: 5pt;
+  margin: 5pt 5pt 5pt 10pt;
+  border: 2px solid black;
+}
+
+.chat-screen-input{
+  background: transparent;
+    line-height: 38px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    color: #666;
+    font-size: 15px;
+    margin: 5pt;
+    padding: 0 20px;
+}
+
+.chat-screen-btn{
+  width: 100px;
+	background: #3b67df;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+
+.chat-screen-online-user {
+  flex: 1;
+  background-color: #3e3c61;
+  color: white;
+  overflow-y: auto;
+}
+
+.chat-screen-online-user .header {
+  background-color: #2f3459;
+  padding: 15px;
+}
+
+
+
+
+
+.chat-screen-online-user .chat-screen-online-user-list {
+  background-color: #3e3c61;
+  display: flex;
+}
+
+.chat-screen-online-user-list .selected {
+  background-color: #363459;
+}
+
+
+.chat-screen-online-user-list .contact .text {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chat-screen-online-user-list .contact .text h4 {
+  font-size: 17px;
+}
+
+.chat-screen-online-user-list .contact .text p {
+  font-size: 12px;
+  color: #8b84c3;
+}
