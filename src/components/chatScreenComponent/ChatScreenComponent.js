@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import io from 'socket.io-client';
 import queryString from 'query-string';
 import "./ChatScreenComponent.css";
+import HeaderComponent from "../headerComponent/HeaderComponent";
+import ChatListComponent from '../chatListComponent/ChatListComponent';
+import ChatComposeComponent from "../chatComposeComponent/chatComposeComponent";
+import OnlineUsersComponent from "../onlineUserComponent/OnlineUsersComponent";
 let socket;
 const END_POINT = "localhost:5000";
 
@@ -18,13 +22,17 @@ class ChatScreenComponent extends Component {
         }
         this.setMessage = this.setMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
-        this.exitRoom=this.exitRoom.bind(this);
+        this.exitRoom = this.exitRoom.bind(this);
     }
 
 
-    exitRoom(){
-        socket.emit('disconnect');
-        this.props.history.push("/login");
+    exitRoom() {
+        console.log("Exit button clicked");
+        console.log(socket);
+        socket.emit('disconnect', () => {
+            console.log("Not getting callback");
+            this.props.history.push("/login");
+        });
     }
 
     sendMessage(event) {
@@ -64,7 +72,7 @@ class ChatScreenComponent extends Component {
             }
         });
 
-        socket.on('loadAllMessages',(messages)=>{
+        socket.on('loadAllMessages', (messages) => {
             this.setState({
                 messages
             })
@@ -88,72 +96,22 @@ class ChatScreenComponent extends Component {
 
 
     render() {
-        const messages = this.state.messages.map((message) => {
-            if (message.user === this.state.username.toLowerCase()) {
-                return <div className="chat-screen-message-sent-message">
-                    <div className="chat-screen-message-text">{message.text}</div>
-                    <div className="chat-screen-message-user">{message.user}</div>
-                </div>;
-            } else if (message.user === "System") {
-                return <div className="chat-screen-message-system-message">
-                    <div className="chat-screen-message-text">{message.text}</div>
-                    <div className="chat-screen-message-user">{message.user}</div>
-                </div>
-            } else {
-                return <div className="chat-screen-message-received-message">
-                    <div className="chat-screen-message-text">{message.text}</div>
-                    <div className="chat-screen-message-user">{message.user}</div>
-                </div>
-            }
-        })
-    
-        const onlineUsers = this.state.users.map((user) =>
-            <div className="contact">
-                <div className="text">
-                    <h4>{user.name}</h4>
-                </div>
-            </div>);
-
         return (<>
             <div className="chat-screen-container">
-                <div className="chat-screen-header">
-                    <div className="chat-room-name">
-                        <label className="chat-room-name-label">
-                            Room:{this.state.room}
-                        </label>
-                    </div>
-                    <div className="chat-room-exit">
-                        <button className="chat-room-exit-btn" onClick={this.exitRoom}>Exit Room</button>
-                    </div>
-                </div>
 
-
-
-
+                <HeaderComponent roomName={this.state.room} exitRoom={this.exitRoom}></HeaderComponent>
 
                 <div className="chat-screen-body">
                     <div className="chat-screen-messagebox">
-                        <div className="chat-screen-message-list">
-                            {messages}
-                        </div>
-                        
-                        <div className="chat-screen-message-compose">
-                            <form onSubmit={this.sendMessage}>
-                                <input className="chat-screen-input" type="text" value={this.state.message} onChange={this.setMessage}></input>
-                                <button type="submit" className="chat-screen-btn">Send</button>
-                            </form>
-                        </div>
+
+                        <ChatListComponent messages={this.state.messages} username={this.state.username}></ChatListComponent>
+                        <ChatComposeComponent message={this.state.message} setMessage={this.setMessage} sendMessage={this.sendMessage}></ChatComposeComponent>
 
                     </div>
 
 
                     <div className="chat-screen-online-user">
-                        <div className="header">
-                            <h2> Online</h2>
-                        </div>
-                        <div className="chat-screen-online-user-list">
-                            {onlineUsers}
-                        </div>
+                        <OnlineUsersComponent onlineusers={this.state.users}></OnlineUsersComponent>
                     </div>
 
                 </div>
