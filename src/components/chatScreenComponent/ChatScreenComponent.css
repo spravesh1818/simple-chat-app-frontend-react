@@ -26,7 +26,8 @@
 .chat-screen-body{
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 80vh;
+  padding: 16px;
 }
 
 .chat-screen-messagebox{
@@ -50,6 +51,7 @@
     font-size: 15px;
     margin: 5pt;
     padding: 0 20px;
+    width: 80%;
 }
 
 .chat-screen-btn{
@@ -105,4 +107,56 @@
 .chat-screen-online-user-list .contact .text p {
   font-size: 12px;
   color: #8b84c3;
+}
+
+.chat-screen-message-list{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.chat-screen-message-received-message{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+
+.chat-screen-message-received-message .chat-screen-message-text{
+  background: #00b0ff;
+  color: white;
+} 
+
+.chat-screen-message-system-message{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
+
+.chat-screen-message-system-message .chat-screen-message-text{
+  background: #ffee58;
+}
+
+.chat-screen-message-sent-message{
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px;
+}
+
+.chat-screen-message-sent-message .chat-screen-message-text{
+  background: #f5f5f5;
+  color:black;
+}
+
+.chat-screen-message-user{
+  padding: 10px;
+}
+
+.chat-screen-message-text{
+  padding:10px;
+  max-width: 100%;
+  border-radius: 8px;
+  word-wrap: break-word;
 }
