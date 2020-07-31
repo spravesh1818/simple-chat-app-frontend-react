@@ -12,7 +12,8 @@ class LoginComponent extends Component {
             username: "",
             room: "",
             usererror: "",
-            roomerror: ""
+            roomerror: "",
+            alertMessage:"",
         }
         this.submitUsername = this.submitUsername.bind(this);
         this.submitRoom = this.submitRoom.bind(this);
@@ -54,6 +55,16 @@ class LoginComponent extends Component {
         this.setState({
             room: event.target.value
         })
+    }
+
+    componentDidMount(){
+        console.log(this.props.history);
+        if(this.props.history.location.state!==undefined){
+            if(this.props.history.location.state.alertMessage!==""){
+                const alertString=this.props.history.location.state.alertMessage;
+                alert(alertString);
+            } 
+        }
     }
 
 

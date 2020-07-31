@@ -18,13 +18,13 @@ class ChatScreenComponent extends Component {
             room: "",
             messages: [],
             message: "",
-            users: []
+            users: [],
         }
         this.setMessage = this.setMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.exitRoom = this.exitRoom.bind(this);
-        this.scrollref=React.createRef();
-        this.scrollRefEvent=this.scrollRefEvent.bind(this);
+        this.scrollref = React.createRef();
+        this.scrollRefEvent = this.scrollRefEvent.bind(this);
     }
 
     exitRoom() {
@@ -37,7 +37,7 @@ class ChatScreenComponent extends Component {
     sendMessage(event) {
         event.preventDefault();
         console.log(this.scrollref);
-        if(this.state.message!==''){
+        if (this.state.message !== '') {
             socket.emit('sendMessage', { message: this.state.message }, () => {
                 this.setState({
                     message: ''
@@ -46,8 +46,8 @@ class ChatScreenComponent extends Component {
         }
     }
 
-    scrollRefEvent(){
-        this.scrollref.current.scrollIntoView({behaviour:"smooth"});
+    scrollRefEvent() {
+        this.scrollref.current.scrollIntoView({ behaviour: "smooth" });
     }
 
     setMessage(event) {
@@ -74,7 +74,11 @@ class ChatScreenComponent extends Component {
 
         socket.emit('join', { name, room }, (error) => {
             if (error) {
-                this.props.history.push("/login");
+                this.props.history.push({
+                    pathname: '/login',
+                    state: { alertMessage:'Username already taken.Please use some other name' }
+                });
+
             }
         });
 
@@ -96,11 +100,12 @@ class ChatScreenComponent extends Component {
             })
         });
 
+
         this.scrollRefEvent();
 
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.scrollRefEvent();
     }
 
@@ -112,14 +117,13 @@ class ChatScreenComponent extends Component {
     render() {
         return (<>
             <div className="chat-screen-container">
-
                 <HeaderComponent roomName={this.state.room} exitRoom={this.exitRoom}></HeaderComponent>
 
                 <div className="chat-screen-body">
-                    
 
 
-                   
+
+
                     <OnlineUsersComponent onlineusers={this.state.users}></OnlineUsersComponent>
                     <div className="chat-screen-messagebox">
 

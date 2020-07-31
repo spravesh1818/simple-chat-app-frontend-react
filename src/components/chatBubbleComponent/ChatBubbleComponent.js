@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ChatBubbleComponent.css";
 
-const ChatBubble=({message,username,index})=>{
+const ChatBubble=({message,username})=>{
     if (message.user === username.toLowerCase()) {
         return <div className="chat-bubble-sent-message">
             <div className="chat-bubble-text">{message.text}</div>
