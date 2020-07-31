@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Simple Chat Application UI using React
 
-## Available Scripts
+This is a simple project that has two pages.It connects with backend and it can be used to send messages to the users that are connected to the same chat room.It features are mentioned below.
 
-In the project directory, you can run:
 
-### `npm start`
+This project was created using [Create React App](https://github.com/facebook/create-react-app).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Instructions to install
 
-### `npm test`
+Clone this repository.
+Go to the command prompt
+Use the command 
+## `npm install`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will install all the required dependencies for the application to run
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then again in the command use the command:
+## `npm start`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This will start the application and automatically open the application in the default browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Note:The instructions written above assumes that nodejs and node package manager are installed in the system.If not installed you can go to this [link](https://nodejs.org/en/download/) and download it.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Features
+This application is only the frontend of the application.It uses the socketio-client package to communicate with the socketio server.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This is a simple application and has two pages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`Login Page`
+This is where the user enters the username and room name.
+This page contains simple custom validations
+When the user presses the Sign In button,the user is sent to the chatscreen
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+`Chat Screen`
+This is where all the chat messages are shown.
+Basically there are three panels.
+A.The header:This shows the current chat room and has a exit room button which can be used to exit the current room
 
-### Analyzing the Bundle Size
+B.The chat screen:Here is where all the chat messages and the message composer is shown.The user can send message as well as see other's messages.The chat is scrolled to show the latest message.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+C.The online users panel:This is the panel where all the online users that are in the room are shown.
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+This was a quick effort and is in no way perfect.But it will be from now on in active development so keep an eye for an update.
 
-### Advanced Configuration
+The application is responsive as flexbox was used to design the frontend but still needs some polish.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+All the components are broken down into smaller sub components making the code cleaner.
 
-### Deployment
+Tests are not yet written.Will have to learn and write them
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## CONFIGURATION
 
-### `npm run build` fails to minify
+By default the react application works on the port 3000;
+But this can be changed since react uses environment variable.
+Before running the code go to the terminal and use the command:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For macOs and Linux
+## `export PORT=5000`
+
+For windows
+
+## `env:PORT=5000`
+
+now when you run `npm start` the application will run on port 5000
+
+
+
+
+
+
